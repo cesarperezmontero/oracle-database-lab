@@ -63,6 +63,6 @@ Lo primero que ejecutaría es `git pull`, para traer esos commits e integrarlos.
 
 ## 12. ¿Qué tipo de Conventional Commit (feat, fix, docs, test…) usarías para: añadir un índice de rendimiento a una tabla, corregir una restricción mal definida, y actualizar el README?
 
-**Añadir un índice de rendimiento a una tabla**: `perf` (si solo se usan los tipos básicos, `feat`)
-**Corregir una restricción mal definida**: `fix` 
-**Actualizar el README**: `docs`
+- **Añadir un índice de rendimiento a una tabla**: `perf` (si solo se usan los tipos básicos, `feat`)
+- **Corregir una restricción mal definida**: `fix` 
+- **Actualizar el README**: `docs`
