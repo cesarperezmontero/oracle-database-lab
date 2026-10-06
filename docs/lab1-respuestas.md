@@ -34,10 +34,10 @@ En la Parte G lo comprobamos ejecutando `dir docs\` en cada rama: en `main` solo
 
 ## 6. Durante el conflicto de la Parte H, ¿qué representaba el contenido entre <<<<<<< HEAD y =======? ¿Y entre ======= y >>>>>>>?
 
-- Entre `<<<<<<< HEAD` y `=======` estaba la versión de mi rama actual (la rama en la que estaba al hacer el merge).
-- Entre `=======` y `>>>>>>> fix/readme-title` estaba la versión de la rama que estaba fusionando.
+- Entre `<<<<<<< HEAD` y `=======` estaba la versión de **mi rama actual** (`main`), que tras fusionar `fix/readme-title` tenía el título *"Oracle Database Lab (Training Edition)"*.
+- Entre `=======` y `>>>>>>> fix/readme-subtitle` estaba la versión de **la rama que estaba fusionando**, con el título *"Oracle Database Lab — Academic Version"*.
 
-Para resolverlo dejé el contenido que me interesaba, borré los marcadores e hice `git add` y `git commit` (commit `merge: resolve README title conflict`).
+Se ve en la Figura 5. Para resolverlo dejé el título que me interesaba, borré los marcadores e hice `git add` y `git commit` (commit `8e53ea7 merge: resolve README title conflict`).
 
 ## 7. ¿Por qué NO se debe hacer git commit --amend sobre un commit que ya se subió con git push?
 
