@@ -1,0 +1,46 @@
+== Esperando a que oralab-26ai este healthy (max. 5 min) ==
+  intento 1: starting
+  intento 2: starting
+  intento 3: starting
+  intento 4: starting
+  intento 5: starting
+  intento 6: starting
+  intento 7: starting
+  intento 8: starting
+  intento 9: starting
+  intento 10: starting
+  intento 11: healthy
+== Estado final ==
+oralab-26ai Up About a minute (healthy)
+== Registro de arranque (docker logs) ==
+Starting Oracle Net Listener.
+Oracle Net Listener started.
+Starting Oracle AI Database instance FREE.
+Oracle AI Database instance FREE started.
+
+The Oracle base remains unchanged with value /opt/oracle
+
+SQL*Plus: Release 23.26.3.0.0 - Production on Fri Oct 9 18:55:17 2026
+Version 23.26.3.0.0
+
+Copyright (c) 1982, 2026, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for Free
+Version 23.26.3.0.0
+
+SQL> 
+User altered.
+
+SQL> 
+User altered.
+
+SQL> 
+Session altered.
+
+SQL> 
+User altered.
+
+SQL> Disconnected from Oracle AI Database 26ai Free Release 23.26.3.0.0 - Develop, Learn, and Run for Free
+Version 23.26.3.0.0
