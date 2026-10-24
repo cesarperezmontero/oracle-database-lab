@@ -3,7 +3,6 @@
 **Nombre:** César Pérez Montero
 **Equipo:** César Pérez Montero (individual)
 **Profesor:** Richard Aviles Lopez
-**Reviewer:** m18u31
 
 ---
 
