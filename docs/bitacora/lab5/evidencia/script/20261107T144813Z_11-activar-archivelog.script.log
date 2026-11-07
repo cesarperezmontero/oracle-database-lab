@@ -1,0 +1,48 @@
+Modo actual: ARCHIVELOG
+== 1. Carpeta de la FRA dentro del volumen (persistente) ==
+== 2. Error de examen: ruta antes que tamaño (ORA-02097/ORA-19802 esperado si la FRA aún no tiene tamaño) ==
+ALTER SYSTEM SET db_recovery_file_dest = '/opt/oracle/oradata/fra' SCOPE = BOTH
+*
+ERROR at line 1:
+ORA-02097: parameter cannot be modified because specified value is invalid
+ORA-19802: cannot use DB_RECOVERY_FILE_DEST without DB_RECOVERY_FILE_DEST_SIZE
+Help: https://docs.oracle.com/error-help/db/ora-02097/
+
+
+== 3. Orden correcto: tamaño y luego ruta ==
+
+System altered.
+
+
+System altered.
+
+La base ya está en ARCHIVELOG: no hace falta reiniciar.
+== 5. Comprobación ==
+Database log mode	       Archive Mode
+Automatic archival	       Enabled
+Archive destination	       USE_DB_RECOVERY_FILE_DEST
+Oldest online log sequence     26
+Next log sequence to archive   24
+Current log sequence	       24
+
+ SEQUENCE# NAME 								MB ARC
+---------- ------------------------------------------------------------ ---------- ---
+	27 o1_mf_1_27_ogygkgnc_.arc						 0 YES
+	26 o1_mf_1_26_ogygkggb_.arc						 0 YES
+	25 arch1_25_1237845575.dbf						.1 YES
+	24 arch1_24_1237845575.dbf					      18.7 YES
+
+FILE_TYPE		PERCENT_SPACE_USED NUMBER_OF_FILES
+----------------------- ------------------ ---------------
+ARCHIVED LOG				 0		 2
+
+NAME							      LIMITE_MB   USADO_MB
+------------------------------------------------------------ ---------- ----------
+/opt/oracle/oradata/fra 					   4096 	 0
+
+PROCE
+-----
+ARC0
+ARC1
+ARC2
+ARC3
