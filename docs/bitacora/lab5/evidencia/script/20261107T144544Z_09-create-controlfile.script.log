@@ -1,0 +1,30 @@
+CREATE CONTROLFILE REUSE DATABASE "FREE" NORESETLOGS FORCE LOGGING ARCHIVELOG
+    MAXLOGFILES 16
+    MAXLOGMEMBERS 3
+    MAXDATAFILES 1024
+    MAXINSTANCES 8
+    MAXLOGHISTORY 292
+LOGFILE
+  GROUP 1 '/opt/oracle/oradata/FREE/redo01.log'  SIZE 200M BLOCKSIZE 512,
+  GROUP 2 '/opt/oracle/oradata/FREE/redo02.log'  SIZE 200M BLOCKSIZE 512,
+  GROUP 3 '/opt/oracle/oradata/FREE/redo03.log'  SIZE 200M BLOCKSIZE 512
+-- STANDBY LOGFILE
+DATAFILE
+  '/opt/oracle/oradata/FREE/system01.dbf',
+  '/opt/oracle/oradata/FREE/pdbseed/system01.dbf',
+  '/opt/oracle/oradata/FREE/sysaux01.dbf',
+  '/opt/oracle/oradata/FREE/pdbseed/sysaux01.dbf',
+  '/opt/oracle/oradata/FREE/users01.dbf',
+  '/opt/oracle/oradata/FREE/pdbseed/undotbs01.dbf',
+  '/opt/oracle/oradata/FREE/undotbs01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/system01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/sysaux01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/undotbs01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/users01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/academia01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/clinica01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/retail01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/logistica01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/fintech01.dbf',
+  '/opt/oracle/oradata/FREE/FREEPDB1/tiendasur01.dbf'
+CHARACTER SET AL32UTF8
