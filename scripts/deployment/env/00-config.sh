@@ -26,3 +26,4 @@ export ORDS_PORT=8080
 export HELPER_IMG="ubuntu:24.04"                  # imagen auxiliar con GNU tar para copiar el volumen
 export DATA_ROOT="/opt/oracle/oradata"            # punto de montaje del volumen dentro del contenedor
 export EVID_LAB4="docs/bitacora/lab4/evidencia"   # evidencia del Lab 4: script/, spool/, config/
+export EVID_LAB5="docs/bitacora/lab5/evidencia"   # evidencia del Lab 5: script/, spool/, config/
