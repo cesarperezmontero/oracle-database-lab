@@ -1,0 +1,25 @@
+== Filas por bloque medidas con DBMS_ROWID (TBS_TIENDASUR es BIGFILE) frente a la media de las estadísticas ==
+
+TABLA	 BLOQUES_CON_FILAS  MIN_FILAS	   MEDIA  MAX_FILAS NUM_ROWS_ENTRE_BLOCKS
+-------- ----------------- ---------- ---------- ---------- ---------------------
+PEDIDO		      5220	    2	   191.6	200		      188
+CLIENTE 	      1477	   22	    67.7	 71		     65.9
+== Distribución: cuántos bloques de PEDIDO tienen cada número de filas ==
+
+FILAS_EN_EL_BLOQUE    BLOQUES
+------------------ ----------
+		 2	    1
+	       191	 2301
+	       192	 2867
+	       196	    7
+	       197	   43
+	       200	    1
+== Longitud de fila de PEDIDO (VSIZE): mínimo, media y máximo ==
+
+ MIN_BYTES MEDIA_BYTES	MAX_BYTES
+---------- ----------- ----------
+	21	  25.7	       26
+
+  PCT_FREE
+----------
+	10

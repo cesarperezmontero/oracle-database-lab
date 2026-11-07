@@ -1,0 +1,13 @@
+SQL Format Cleared
+== Alerta de recuperabilidad (0 filas = no despertar a nadie) ==
+
+0 rows selected. 
+
+== Valores actuales, para comprobar a mano que la consulta no dispara sin motivo ==
+
+FRA_PCT_NO_RECLAMABLE COPIAS_RMAN_24H
+--------------------- ---------------
+                  2.3               1
+
+1 row selected. 
+

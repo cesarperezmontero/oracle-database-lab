@@ -1,0 +1,9 @@
+== Punto de partida: checkpoint, para medir solo lo que añade la carga ==
+
+MOMEN ESTIMATED_MTTR ACTUAL_REDO_BLKS RECOVERY_ESTIMATED_IOS
+----- -------------- ---------------- ----------------------
+antes		  46		   10			  10
+
+MOMENTO ESTIMATED_MTTR ACTUAL_REDO_BLKS RECOVERY_ESTIMATED_IOS
+------- -------------- ---------------- ----------------------
+despues 	    46		  16017 		   592

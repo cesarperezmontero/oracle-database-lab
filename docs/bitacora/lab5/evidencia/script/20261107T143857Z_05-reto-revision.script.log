@@ -1,0 +1,24 @@
+== Lo que trae el PR (las dos ramas rompen la regla 1 y, por tanto, la 5) ==
+PR original                    filas=    981  lecturas l??gicas=   1487  f??sicas=    0     24.4 ms
+                               plan: TABLE ACCESS FULL CLIENTE
+== ¿Qué guarda de verdad la columna apellidos? (dos apellidos, con mayúscula inicial) ==
+
+UPPER_IGUAL_GIL CON_GIL_EN_ALGUN_SITIO SEGUNDO_APELLIDO_GIL PRIMER_APELLIDO_GIL
+--------------- ---------------------- -------------------- -------------------
+              0                   6121                 6121                   0
+== Reescritura 1: misma semántica, columnas desnudas (LIKE con prefijo y la columna tal cual se guarda) ==
+reescrita OR                   filas=    981  lecturas l??gicas=    722  f??sicas=    0      7.5 ms
+                               plan: TABLE ACCESS BY INDEX ROWID BATCHED CLIENTE > BITMAP CONVERSION TO ROWIDS > BITMAP OR > BITMAP CONVERSION FROM ROWIDS > INDEX RANGE SCAN IX_CLI_APELLIDOS > BITMAP CONVERSION FROM ROWI
+DS > SORT ORDER BY > INDEX RANGE SCAN IX_CLI_TELEFONO
+reescrita UNION                filas=    981  lecturas l??gicas=    986  f??sicas=    0      3.5 ms
+                               plan: HASH UNIQUE > UNION-ALL > TABLE ACCESS BY INDEX ROWID BATCHED CLIENTE > INDEX RANGE SCAN IX_CLI_TELEFONO > TABLE ACCESS BY INDEX ROWID BATCHED CLIENTE > INDEX RANGE SCAN IX_CLI_APELLI
+DOS
+== Reescritura 2: si lo que se busca es el PRIMER apellido Gil (prefijo: sargable) ==
+primer apellido Gil            filas=    981  lecturas l??gicas=    722  f??sicas=    0        5 ms
+                               plan: TABLE ACCESS BY INDEX ROWID BATCHED CLIENTE > BITMAP CONVERSION TO ROWIDS > BITMAP OR > BITMAP CONVERSION FROM ROWIDS > SORT ORDER BY > INDEX RANGE SCAN IX_CLI_APELLIDOS > BITMAP CONV
+ERSION FROM ROWIDS > SORT ORDER BY > INDEX RANGE SCAN IX_CLI_TELEFONO
+== Limpieza ==
+
+INDICES_TIENDASUR
+-----------------
+                7

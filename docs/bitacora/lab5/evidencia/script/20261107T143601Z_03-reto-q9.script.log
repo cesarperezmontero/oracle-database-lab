@@ -1,0 +1,9 @@
+== Q9 tal cual: 20 pedidos más recientes, todas las columnas ==
+Q9 con ix_ped_fecha	       filas=	  20  lecturas l??gicas=      5  f??sicas=    0       .3 ms
+			       plan: COUNT STOPKEY > VIEW > TABLE ACCESS BY INDEX ROWID PEDIDO > INDEX FULL SCAN DESCENDING IX_PED_FECHA
+== Tamaños para decidir: la tabla frente al índice que ya existe ==
+
+SEGMENT_NAME   SEGMENT_TYPE		  MB	 BLOCKS
+-------------- ------------------ ---------- ----------
+PEDIDO	       TABLE			  42	   5376
+IX_PED_FECHA   INDEX			  22	   2816

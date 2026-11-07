@@ -1,0 +1,6 @@
+== UX_CLI_EMAIL frente a PK_CLIENTE: INDEX_STATS (VALIDATE STRUCTURE, solo en laboratorio: bloquea la tabla) ==
+
+NAME		   ALTURA   ENTRADAS	  HOJAS      RAMAS BYTES_ENTRADA_HOJA BYTES_ENTRADA_RAMA     FO_MAX ENTRADAS_POR_HOJA	PCT_USED
+-------------- ---------- ---------- ---------- ---------- ------------------ ------------------ ---------- ----------------- ----------
+PK_CLIENTE		2     100000	    187 	 1		 14.9		    10.9	736		  535	     100
+UX_CLI_EMAIL		3     100000	    501 	 3		 35.9		    18.2	441		  200	      90
