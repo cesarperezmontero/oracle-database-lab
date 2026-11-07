@@ -26,6 +26,7 @@ SELECT 'fila104=' || estado FROM admin_academia.aca_estudiantes WHERE estudiante
 SELECT 'tiendasur=' || (SELECT COUNT(*) FROM tiendasur.cliente) || '/' || (SELECT COUNT(*) FROM tiendasur.pedido) FROM dual;
 SELECT 'indices_pedido=' || LISTAGG(index_name, ',') WITHIN GROUP (ORDER BY index_name) FROM dba_indexes WHERE owner = 'TIENDASUR' AND table_name = 'PEDIDO';
 SELECT 'ux_cli_dni=' || COUNT(*) FROM dba_indexes WHERE owner = 'TIENDASUR' AND index_name = 'UX_CLI_DNI' AND uniqueness = 'UNIQUE';
+SELECT 'ix_cli_telefono=' || COUNT(*) FROM dba_indexes WHERE owner = 'TIENDASUR' AND index_name = 'IX_CLI_TELEFONO' AND visibility = 'VISIBLE';
 SELECT 'invisibles=' || COUNT(*) FROM dba_indexes WHERE owner = 'TIENDASUR' AND visibility = 'INVISIBLE';
 SELECT 'medir=' || status FROM dba_objects WHERE owner = 'LAB_TOOLS' AND object_name = 'MEDIR' AND object_type = 'PACKAGE BODY';
 SELECT 'lab5_pruebas=' || COUNT(*) FROM dba_users WHERE username = 'LAB5_PRUEBAS';
@@ -41,6 +42,7 @@ comprobar "TiendaSur: clientes/pedidos" "$(val tiendasur)" "100000/1000000" "Par
 comprobar "banco de medida LAB_TOOLS.MEDIR" "$(val medir)" "VALID" "Parte B (01-herramienta-medir)"
 comprobar "índices de PEDIDO tras V005" "$(val indices_pedido)" "IX_PED_CLI_FEC_CUB,IX_PED_CP,IX_PED_FECHA,IX_PED_PENDIENTES,PK_PEDIDO" "Parte G (V005)"
 comprobar "DNI único garantizado por la base" "$(val ux_cli_dni)" 1 "Parte G (V005)"
+comprobar "Q5 con índice en las dos ramas del OR" "$(val ix_cli_telefono)" 1 "reto de la Parte G (V006)"
 comprobar "índices invisibles olvidados" "$(val invisibles)" 0 "Parte G (ciclo de vida)"
 comprobar "esquema de pruebas LAB5_PRUEBAS borrado" "$(val lab5_pruebas)" 0 "Parte H (07-divisiones-y-cola)"
 echo "== Partes I a L · SCN, control files, redo y ARCHIVELOG =="
