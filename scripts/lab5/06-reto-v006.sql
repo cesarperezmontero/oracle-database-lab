@@ -1,6 +1,7 @@
 -- scripts/lab5/06-reto-v006.sql — reto de la Parte G: defender (o no) un índice que V005 no cubre
 -- Candidato: IX_CLI_TELEFONO para Q5 (identificar a quien llama al centro de atención: email = :x OR telefono = :x).
--- Mide las cinco preguntas con el índice creado de forma TEMPORAL y lo BORRA al final: V006 no se aplica en este laboratorio.
+-- Mide las cinco preguntas con el índice creado de forma TEMPORAL y lo BORRA al final. Es la medida previa a V006:
+-- una vez aplicada database/migrations/V006__ix_cli_telefono.sql (PR #13), el script se niega a ejecutarse para no borrarla.
 -- Se ejecuta como SYSDBA: bash scripts/ops/sysdba.sh scripts/lab5/06-reto-v006.sql <evidencia>
 WHENEVER SQLERROR EXIT FAILURE
 SET LINESIZE 220 PAGESIZE 50 FEEDBACK OFF VERIFY OFF TAB OFF
@@ -8,7 +9,11 @@ COLUMN index_name FORMAT A18
 COLUMN columnas FORMAT A40
 ALTER SESSION SET CONTAINER = FREEPDB1;
 SET SERVEROUTPUT ON FORMAT WRAPPED
-BEGIN EXECUTE IMMEDIATE 'DROP INDEX tiendasur.ix_cli_telefono'; EXCEPTION WHEN OTHERS THEN NULL; END;
+DECLARE n NUMBER;
+BEGIN
+  SELECT COUNT(*) INTO n FROM dba_indexes WHERE owner = 'TIENDASUR' AND index_name = 'IX_CLI_TELEFONO';
+  IF n > 0 THEN RAISE_APPLICATION_ERROR(-20006, 'IX_CLI_TELEFONO existe (V006 aplicada): no se repite la medida para no borrarlo'); END IF;
+END;
 /
 COLUMN tel NEW_VALUE tel NOPRINT
 SELECT telefono AS tel FROM tiendasur.cliente WHERE id_cliente = 4711;
@@ -31,7 +36,7 @@ EXEC lab_tools.medir.consulta('Q5 solo telefono despues', q'[SELECT id_cliente, 
 EXEC lab_tools.medir.dml('CLIENTE 2000 INSERT despues', q'[&ins]', 2000)
 SELECT segment_name AS index_name, ROUND(bytes / 1048576, 1) AS mb, (SELECT leaf_blocks FROM dba_indexes WHERE owner = 'TIENDASUR' AND index_name = 'IX_CLI_TELEFONO') AS hojas
   FROM dba_segments WHERE owner = 'TIENDASUR' AND segment_name = 'IX_CLI_TELEFONO';
-PROMPT ===== Limpieza: V006 NO se aplica en este laboratorio =====
+PROMPT ===== Limpieza: el índice temporal se borra; el definitivo lo crea la migración V006 =====
 DROP INDEX tiendasur.ix_cli_telefono;
 SELECT COUNT(*) AS indices_cliente FROM dba_indexes WHERE owner = 'TIENDASUR' AND table_name = 'CLIENTE';
 EXIT

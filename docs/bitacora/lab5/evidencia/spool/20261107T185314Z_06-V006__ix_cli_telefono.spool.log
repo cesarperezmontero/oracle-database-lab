@@ -1,0 +1,20 @@
+
+Session altered.
+
+
+PL/SQL procedure successfully completed.
+
+
+Index created.
+
+
+TABLE_NA INDEX_NAME	      UNIQUENES VISIBILIT
+-------- -------------------- --------- ---------
+CLIENTE  IX_CLI_PAIS_CIUDAD   NONUNIQUE VISIBLE
+CLIENTE  IX_CLI_TELEFONO      NONUNIQUE VISIBLE
+CLIENTE  PK_CLIENTE	      UNIQUE	VISIBLE
+CLIENTE  UX_CLI_DNI	      UNIQUE	VISIBLE
+CLIENTE  UX_CLI_EMAIL	      UNIQUE	VISIBLE
+
+5 rows selected.
+
