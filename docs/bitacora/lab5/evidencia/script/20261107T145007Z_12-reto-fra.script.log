@@ -1,0 +1,10 @@
+FRA usada antes : 32666624 bytes
+INSERT 10 000 filas    bloques de undo =   138 (  1104 KB) | redo total =   3961 KB, del cual describe el undo =   1621 KB
+   y su ROLLBACK       redo generado al deshacer = 345 KB
+UPDATE 10 000 filas    bloques de undo =    71 (   568 KB) | redo total =   1258 KB, del cual describe el undo =    540 KB
+   y su ROLLBACK       redo generado al deshacer = 751 KB
+DELETE 10 000 filas    bloques de undo =   427 (  3416 KB) | redo total =   6621 KB, del cual describe el undo =   3262 KB
+   y su ROLLBACK       redo generado al deshacer = 4701 KB
+El ROLLBACK no es gratis: deshacer es aplicar cambios, y esos cambios también generan redo.
+FRA usada después: 51345920 bytes
+Crecimiento de la FRA: 18241 KB
