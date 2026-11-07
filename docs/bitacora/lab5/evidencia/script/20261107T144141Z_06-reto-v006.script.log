@@ -1,0 +1,38 @@
+
+
+
+===== ANTES (sin IX_CLI_TELEFONO) =====
+Q5 OR antes                    filas=      1  lecturas l??gicas=   1486  f??sicas=    0      6.6 ms
+                               plan: TABLE ACCESS FULL CLIENTE
+Q5 solo telefono antes         filas=      1  lecturas l??gicas=   1486  f??sicas=    0      4.3 ms
+                               plan: TABLE ACCESS FULL CLIENTE
+CLIENTE 2000 INSERT antes      filas=  2000  lecturas l??gicas=  22466  bloques modificados= 20250  redo=  2668 KB   133.3 ms  | por fila: 10.1 bloques, 1366 bytes de redo
+===== Pregunta 4 · REDUNDANCIA: ¿algún índice de CLIENTE empieza ya por TELEFONO? =====
+
+INDEX_NAME         COLUMNAS
+------------------ ----------------------------------------
+IX_CLI_PAIS_CIUDAD PAIS, CIUDAD
+PK_CLIENTE         ID_CLIENTE
+UX_CLI_DNI         DNI
+UX_CLI_EMAIL       EMAIL
+===== Pregunta 2 · VIABILIDAD: claves distintas de TELEFONO =====
+
+    CLAVES PCT_POR_VALOR
+---------- -------------
+    100000          .001
+===== DESPUÉS (con IX_CLI_TELEFONO temporal) =====
+Q5 OR despues                  filas=      1  lecturas l??gicas=      6  f??sicas=    0       .2 ms
+                               plan: TABLE ACCESS BY INDEX ROWID BATCHED CLIENTE > BITMAP CONVERSION TO ROWIDS > BITMAP OR > BITMAP CONVERSION FROM ROWIDS > INDEX RANGE SCAN UX_CLI_EMAIL > BITMAP CONVERSION FROM ROWIDS >
+ INDEX RANGE SCAN IX_CLI_TELEFONO
+Q5 solo telefono despues       filas=      1  lecturas l??gicas=      3  f??sicas=    0       .2 ms
+                               plan: TABLE ACCESS BY INDEX ROWID BATCHED CLIENTE > INDEX RANGE SCAN IX_CLI_TELEFONO
+CLIENTE 2000 INSERT despues    filas=  2000  lecturas l??gicas=  26579  bloques modificados= 24300  redo=  3165 KB    96.6 ms  | por fila: 12.2 bloques, 1620 bytes de redo
+
+INDEX_NAME                 MB      HOJAS
+------------------ ---------- ----------
+IX_CLI_TELEFONO             3        294
+===== Limpieza: V006 NO se aplica en este laboratorio =====
+
+INDICES_CLIENTE
+---------------
+              4
