@@ -1,0 +1,6 @@
+SQL Format Cleared
+== Firmas con más de 50 sentencias distintas (candidatas a variables de enlace) ==
+
+    CON_ID FORCE_MATCHING_SIGNATURE SENTENCIAS EJECUCIONES KB_SHARED_POOL EJEMPLO                                                                         
+---------- ------------------------ ---------- ----------- -------------- --------------------------------------------------------------------------------
+         3      1863221789280198928       1000        1000          38845 SELECT /* lab4_literal */ COUNT(*) FROM admin_academia.aca_estudiantes WHERE est

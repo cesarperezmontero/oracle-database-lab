@@ -1,0 +1,34 @@
+
+Session altered.
+
+
+System altered.
+
+
+NAME		     VALUE		    ISPDB
+-------------------- ---------------------- -----
+db_create_file_dest  /opt/oracle/oradata    TRUE
+
+1 row selected.
+
+
+NAME		     VALUE
+-------------------- ----------------------
+db_create_file_dest  /opt/oracle/oradata
+
+1 row selected.
+
+== Prueba: CREATE TABLESPACE sin cláusula DATAFILE ==
+
+Tablespace created.
+
+
+FILE_NAME												     MB AUT	MAX_MB
+---------------------------------------------------------------------------------------------------- ---------- --- ----------
+/opt/oracle/oradata/FREE/55E54F210F100828E0630B00580ADFD0/datafile/o1_mf_tbs_x_ogy19s83_.dbf		    100 YES   33554432
+
+1 row selected.
+
+
+Tablespace dropped.
+

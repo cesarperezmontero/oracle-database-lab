@@ -1,0 +1,89 @@
+SQL Format Cleared
+
+== 1. Modelo de gestión de memoria: ¿quién reparte? ==
+
+NAME                                 DISPLAY_VALU
+------------------------------------ ------------
+db_cache_size                        0           
+memory_size                          0           
+memory_target                        0           
+pga_aggregate_limit                  2G          
+pga_aggregate_target                 512M        
+sga_max_size                         1536M       
+sga_target                           1536M       
+shared_pool_size                     0           
+
+== 2. La SGA: el resumen que imprime STARTUP (v$sga) ==
+
+NAME                                         MB
+------------------------------------ ----------
+Fixed Size                                  4.8
+Variable Size                               928
+Database Buffers                            592
+Redo Buffers                                4.3
+
+== 3. Componentes de la SGA y si se pueden redimensionar (v$sgainfo) ==
+
+NAME                                         MB RES
+------------------------------------ ---------- ---
+Maximum SGA Size                         1529.1 No 
+Shared Pool Size                            896 Yes
+Buffer Cache Size                           592 Yes
+Startup overhead in Shared Pool             221 No 
+Shared IO Pool Size                          80 Yes
+Free SGA Memory Available                    16    
+Large Pool Size                              16 Yes
+Granule Size                                 16 No 
+Fixed SGA Size                              4.8 No 
+Redo Buffers                                4.3 No 
+Data Transfer Cache Size                      0 Yes
+Java Pool Size                                0 Yes
+Vector Memory Area Size                       0 No 
+In-Memory Area Size                           0 No 
+Streams Pool Size                             0 Yes
+
+== 4. Reparto dinámico con ASMM: tamaño actual y operaciones de ajuste (v$sga_dynamic_components) ==
+
+COMPONENT                       ACTUAL_MB     MIN_MB  FIJADO_MB    AJUSTES
+------------------------------ ---------- ---------- ---------- ----------
+shared pool                           896        896          0          0
+DEFAULT buffer cache                  512        512          0          0
+Shared IO Pool                         80         80         80          0
+large pool                             16         16          0          0
+
+== 5. Asesor: ¿qué pasaría con otra SGA_TARGET? (factor 1 = tamaño actual) ==
+
+    SGA_MB     FACTOR TIEMPO_BD_ESTIMADO LECTURAS_FISICAS_EST
+---------- ---------- ------------------ --------------------
+       768         .5                  1                17457
+      1152        .75                  1                17457
+      1536          1                  1                17457
+      1920       1.25                  1                17457
+      2304        1.5                  1                17457
+      2688       1.75                  1                17457
+      3072          2                  1                17457
+
+== 6. La PGA: memoria privada de cada proceso (v$pgastat) ==
+
+NAME                                      VALOR UNIDAD  
+------------------------------------ ---------- --------
+aggregate PGA target parameter              512 MB      
+aggregate PGA auto target                 200.4 MB      
+total PGA inuse                           296.8 MB      
+total PGA allocated                       387.7 MB      
+maximum PGA allocated                     464.3 MB      
+over allocation count                         0         
+cache hit percentage                        100 percent 
+
+== 7. Los procesos que más PGA usan ahora mismo (v$process) ==
+
+PNAME    SPID                       USADA_MB ASIGNADA_MB  MAXIMA_MB
+-------- ------------------------ ---------- ----------- ----------
+MMON     2687                            7.8        33.4      108.2
+ARC0     2767                           11.7        12.8       12.8
+ARC1     2769                           11.7        12.8       12.8
+ARC2     2771                           11.7        12.4       12.4
+ARC3     2773                           11.7        12.4       12.4
+M002     2996                            8.7        12.3       15.5
+Q004     3052                            3.4          10       11.8
+M003     3000                            7.5         9.6         11

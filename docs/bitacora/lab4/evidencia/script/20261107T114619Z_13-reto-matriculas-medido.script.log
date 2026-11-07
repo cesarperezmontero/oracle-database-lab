@@ -1,0 +1,11 @@
+== ACA_MATRICULAS: filas REALES por bloque (DBMS_ROWID) y tamaño real de la fila (VSIZE) ==
+
+BLOQUES_CON_FILAS  MIN_FILAS MEDIA_FILAS  MAX_FILAS
+----------------- ---------- ----------- ----------
+	      301	 159	   199.3	213
+
+BYTES_DATOS_MEDIA
+-----------------
+	     26.3
+== Ocupación de los bloques (ASSM) ==
+FULL=300 FS1(0-25%)=0 FS2(25-50%)=1 FS3(50-75%)=0 FS4(75-100%)=7 sin formatear=62

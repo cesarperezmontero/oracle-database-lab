@@ -1,0 +1,11 @@
+SQL Format Cleared
+== Sesiones de usuario ACTIVAS (menos la mía), de más a menos PGA ==
+
+       SID    SERIAL# USERNAME   PDB       SPID     PROGRAM                    PGA_USADA_MB PGA_ASIGNADA_MB SEG_EN_CURSO SQL_TEXT                                                    
+---------- ---------- ---------- --------- -------- -------------------------- ------------ --------------- ------------ ------------------------------------------------------------
+       176      10566            CDB$ROOT  3549     oracle@1798f1f0fffc (J000)          1.8            20.8          107                                                             
+       212       7566            CDB$ROOT  3551     oracle@1798f1f0fffc (J001)          1.7             4.5          107                                                             
+        56      45655 SYS        FREEPDB1  3909     sqlplus@1798f1f0fffc (TNS           3.3             3.7            4 SELECT COUNT(*) FROM admin_academia.aca_matriculas a, admin_
+                                                    V1-V3)                                                                                                                           
+
+       177      64005            CDB$ROOT  3553     oracle@1798f1f0fffc (J002)          1.4             1.5          107                                                             
