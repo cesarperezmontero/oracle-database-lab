@@ -1,0 +1,47 @@
+== $ORACLE_HOME/dbs en esta imagen: la carpeta entera es un enlace al volumen ==
+lrwxrwxrwx 1 oracle oinstall 37 Jul  5 22:02 /opt/oracle/product/26ai/dbhomeFree/dbs -> /opt/oracle/oradata/dbconfig/FREE/dbs
+-rw-r----- 1 oracle oinstall 185654784 Oct 13 08:15 arch1_10_1237845575.dbf
+-rw-r----- 1 oracle oinstall 180873216 Oct 13 16:15 arch1_11_1237845575.dbf
+-rw-r----- 1 oracle oinstall 180800000 Oct 14 09:33 arch1_12_1237845575.dbf
+-rw-r----- 1 oracle oinstall  15183872 Nov  7 10:34 arch1_13_1237845575.dbf
+-rw-r----- 1 oracle oinstall  68800512 Oct  9 18:55 arch1_1_1237845575.dbf
+-rw-r----- 1 oracle oinstall 184552960 Oct 10 09:12 arch1_2_1237845575.dbf
+-rw-r----- 1 oracle oinstall 186010112 Oct 10 13:01 arch1_3_1237845575.dbf
+-rw-r----- 1 oracle oinstall 187043328 Oct 10 19:11 arch1_4_1237845575.dbf
+-rw-r----- 1 oracle oinstall 182824448 Oct 11 08:27 arch1_5_1237845575.dbf
+-rw-r----- 1 oracle oinstall 197723136 Oct 11 13:01 arch1_6_1237845575.dbf
+-rw-r----- 1 oracle oinstall 182658048 Oct 11 17:13 arch1_7_1237845575.dbf
+-rw-r----- 1 oracle oinstall 180841472 Oct 12 08:43 arch1_8_1237845575.dbf
+-rw-r----- 1 oracle oinstall 182125056 Oct 12 17:44 arch1_9_1237845575.dbf
+-rw-r----- 1 oracle oinstall  18907136 Oct  9 19:09 c-1509902213-20261009-00
+-rw-r----- 1 oracle oinstall  18907136 Nov  7 11:11 c-1509902213-20261107-00
+-rw-rw---- 1 oracle oinstall      1544 Nov  7 11:29 hc_FREE.dat
+-rw-r----- 1 oracle oinstall      3079 May 14  2015 init.ora
+-rw-r----- 1 oracle oinstall        24 Jul  5 21:57 lkFREE
+-rw-r----- 1 oracle oinstall      2048 Nov  7 10:40 orapwFREE
+-rw-r----- 1 oracle oinstall  18792448 Nov  7 11:11 snapcf_FREE.f
+-rw-r----- 1 oracle oinstall      3584 Nov  7 11:32 spfileFREE.ora
+2.1G	/opt/oracle/oradata/dbconfig/FREE/dbs
+== Redo archivado según el control file (destino por defecto: prefijo $ORACLE_HOME/dbs/arch) ==
+
+ SEQUENCE# NAME 								DEL	    MB FIRST_TIME
+---------- -------------------------------------------------------------------- --- ---------- ----------------
+	 1 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_1_1237845575.dbf	NO	    66 2026-07-05 21:59
+	 2 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_2_1237845575.dbf	NO	   176 2026-10-09 18:54
+	 3 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_3_1237845575.dbf	NO	   177 2026-10-10 09:12
+	 4 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_4_1237845575.dbf	NO	   178 2026-10-10 13:01
+	 5 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_5_1237845575.dbf	NO	   174 2026-10-10 19:10
+	 6 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_6_1237845575.dbf	NO	   189 2026-10-11 08:26
+	 7 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_7_1237845575.dbf	NO	   174 2026-10-11 13:00
+	 8 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_8_1237845575.dbf	NO	   172 2026-10-11 17:12
+	 9 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_9_1237845575.dbf	NO	   174 2026-10-12 08:42
+	10 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_10_1237845575.dbf	NO	   177 2026-10-12 17:39
+	11 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_11_1237845575.dbf	NO	   172 2026-10-13 08:13
+	12 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_12_1237845575.dbf	NO	   172 2026-10-13 16:13
+	13 /opt/oracle/product/26ai/dbhomeFree/dbs/arch1_13_1237845575.dbf	NO	    14 2026-10-14 09:32
+== Primeras líneas del alert log (el ADR viene de la capa de la imagen) ==
+2026-07-05T21:57:46.612411+00:00
+Adjusting the default value of parameter "parallel_max_servers" from 0 to 1.
+Starting ORACLE instance (normal) (OS id: 613)
+0
+0 líneas con fecha de octubre
