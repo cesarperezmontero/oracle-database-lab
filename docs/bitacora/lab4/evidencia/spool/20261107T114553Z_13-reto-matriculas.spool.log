@@ -1,0 +1,23 @@
+SQL Format Cleared
+== 1. Antes de mirar las estadísticas: estructura declarada (base de la predicción) ==
+
+ COLUMN_ID COLUMN_NAME        DATA_TYPE      DATA_LENGTH N
+---------- ------------------ -------------- ----------- -
+         1 MATRICULA_ID       NUMBER                  22 N
+         2 ESTUDIANTE_ID      NUMBER                  22 N
+         3 ASIGNATURA_ID      NUMBER                  22 N
+         4 PERIODO            VARCHAR2                10 N
+         5 FECHA_MATRICULA    TIMESTAMP(6)            11 N
+== 2. Después: lo que dicen las estadísticas (tamaño medio REAL de cada columna y de la fila) ==
+
+COLUMN_NAME        AVG_COL_LEN
+------------------ -----------
+MATRICULA_ID                 5
+ESTUDIANTE_ID                5
+ASIGNATURA_ID                3
+PERIODO                      7
+FECHA_MATRICULA             11
+
+         R    R_BYTES BLOQUES_BAJO_HWM   PCT_FREE BLOQUES_ASIGNADOS    EXTENTS     BFR_U3       B_U3 FILAS_POR_BLOQUE_REAL
+---------- ---------- ---------------- ---------- ----------------- ---------- ---------- ---------- ---------------------
+     60000         30              370         10               384         18        242        248                 162.2
