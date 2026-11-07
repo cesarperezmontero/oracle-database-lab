@@ -279,7 +279,7 @@ En la medida "Q12 pendientes" del protocolo, el compañero ganaba con `IX_PED_ES
 
 ### Reto: defiende tu propio índice — V006 `IX_CLI_TELEFONO` (`scripts/lab5/06-reto-v006.sql`)
 
-**Consulta que V005 no cubre: Q5**, identificar a quien llama al centro de atención (`email = :x OR telefono = :x`). Medí con el índice creado de forma temporal y borrado al final del script: V006 **no** queda aplicado.
+**Consulta que V005 no cubre: Q5**, identificar a quien llama al centro de atención (`email = :x OR telefono = :x`). Primero medí con el índice creado de forma temporal y borrado al final del script. Después lo propuse como V006 en una rama aparte (Issue #13, rama `feat/13-v006-ix-cli-telefono`, PR #14) y lo fusioné.
 
 | Pregunta | Medida | Lectura |
 |---|---|---|
@@ -289,17 +289,7 @@ En la medida "Q12 pendientes" del protocolo, el compañero ganaba con `IX_PED_ES
 | 4 · Redundancia | Ningún índice de CLIENTE empieza por `TELEFONO` (`IX_CLI_PAIS_CIUDAD`, `PK_CLIENTE`, `UX_CLI_DNI`, `UX_CLI_EMAIL`) | No duplica a otro |
 | 5 · Ciclo de vida | Crear `ONLINE`; observar `DBA_INDEX_USAGE` durante un ciclo completo (cierre de mes) | Si no se usa, `INVISIBLE` y después DROP por migración |
 
-```sql
--- database/migrations/V006__ix_cli_telefono.sql  (propuesta: no aplicada en este laboratorio)
--- + ix_cli_telefono  Q5 (atención al cliente: email = :x OR telefono = :x). Sin él, el OR lee CLIENTE entera
---                    (1486 lecturas); con él, BITMAP OR de dos RANGE SCAN: 6 lecturas. 100 000 valores distintos.
---                    Coste medido: INSERT en CLIENTE de 10,1 a 12,2 bloques por fila; 3 MB. No es prefijo de ningún otro índice.
-SET FEEDBACK ON
-ALTER SESSION SET CONTAINER = FREEPDB1;
-WHENEVER SQLERROR EXIT SQL.SQLCODE
-CREATE INDEX tiendasur.ix_cli_telefono ON tiendasur.cliente (telefono) ONLINE;
-EXIT
-```
+La migración está en `database/migrations/V006__ix_cli_telefono.sql`. Es idempotente como V005: si `IX_CLI_TELEFONO` ya existe, no hace nada. Se aplicó con `08-aplicar-migraciones.sh` (evidencia `spool/20261107T185314Z_06-V006__ix_cli_telefono.spool.log`). Desde entonces `06-reto-v006.sql` se niega a ejecutarse (ORA-20006), porque al terminar borraría el índice definitivo. `16-verificacion-final.sh` comprueba el índice y sigue dando TODO OK.
 
 **Descripción del Pull Request:**
 
@@ -307,7 +297,7 @@ EXIT
 > **Measured:** Q5 1486 → 6 logical reads; phone-only lookup 1486 → 3. Write cost: +2.1 blocks and +254 bytes of redo per customer INSERT; 3 MB. Not redundant with any existing index.
 > **Decision needed:** worth it only if Q5 is a frequent call-center path. Customer INSERTs are much rarer than order INSERTs, so the write cost is small. Proposed rollout: create ONLINE, check `DBA_INDEX_USAGE` after a full month-end, and drop by migration if unused.
 
-**Conclusión:** técnicamente compensa. Q5 pasa de 1486 a 6 lecturas con un coste de 2 bloques por alta de cliente, y las altas de clientes son mucho menos frecuentes que los pedidos. Pero la pregunta 1 depende de la **frecuencia real** de Q5 en producción, y no la tengo medida en este banco. Por eso lo dejo como propuesta documentada y **no lo fusiono** en este laboratorio. Además, la verificación del Lab 5 exige exactamente el diseño V005.
+**Conclusión:** técnicamente compensa. Q5 pasa de 1486 a 6 lecturas con un coste de 2 bloques por alta de cliente, y las altas de clientes son mucho menos frecuentes que los pedidos. La pregunta 1 depende de la **frecuencia real** de Q5 en producción, que este banco no mide. Por eso el PR lo fusiona con una condición de ciclo de vida: revisar `DBA_INDEX_USAGE` tras un cierre de mes y, si no se usa, ponerlo `INVISIBLE` y borrarlo con otra migración. El diseño V005 de PEDIDO no cambia: V006 solo añade un índice a CLIENTE.
 
 ## Parte H — Divisiones de hoja, patrón cola y remedios (evidencias 07a, 07b, 07c y gráficos)
 
